@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PharmaChem QMS</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>PharmaChem QMS</h1>
+    <p>Pharmaceutical Quality Management System</p>
+</header>
+
+<main>
+
+    <section class="summary">
+        <div class="card">
+            <h3>Total Records</h3>
+            <p id="total">{{ total }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Quality Modules</h3>
+            <p>10</p>
+        </div>
+
+        <div class="card">
+            <h3>System Status</h3>
+            <p>Active</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Quality Management Modules</h2>
+
+        <div class="modules">
+
+            {% for module in modules %}
+
+            <div class="module">
+                <h3>{{ module }}</h3>
+
+                <button
+                    onclick="openForm('{{ module }}')">
+                    Add Record
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="viewRecords('{{ module }}')">
+                    View Records
+                </button>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <section class="panel" id="recordForm"
+             style="display:none">
+
+        <h2 id="formTitle">Add Record</h2>
+
+        <form id="newRecordForm">
+
+            <label for="title">Record title</label>
+            <input id="title" required>
+
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+
+            <label for="status">Status</label>
+            <select id="status">
+                <option>Open</option>
+                <option>In Progress</option>
+                <option>Under Review</option>
+                <option>Approved</option>
+                <option>Closed</option>
+            </select>
+
+            <button type="submit">
+                Save Record
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+    </section>
+
+    <section class="panel">
+        <h2>Records</h2>
+
+        <div id="recordList">
+            Select a module and click View Records.
+        </div>
+    </section>
+
+</main>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
